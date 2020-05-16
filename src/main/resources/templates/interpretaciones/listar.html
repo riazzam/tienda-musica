@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+
+			<div class="card-body">
+				<h4 class="card-title">
+
+
+					<a th:href="@{/interpretacion/form}" class="btn btn-dark btn-xs">NUEVO</a>
+				</h4>
+
+				<table class="table table-striped table-responsive-sm ">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Tema</th>			
+							<th>Estilo</th>	
+							<th>Intérprete</th>	
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="interpretacion: ${interpretaciones}">
+							<td th:text="${interpretacion.idInterpretacion}"></td>
+							<td th:text="${interpretacion.temaInterpretacion.nombreTema}"></td>
+							<td th:text="${interpretacion.estiloInterpretacion.nombreEstilo}"></td>
+
+							<td th:text="${interpretacion.listaInterpretes}"> </td>
+							<td><a class="btn btn-secondary btn-sm"
+								th:href="@{/interpretacion/form/}+ ${interpretacion.idInterpretacion}"
+								th:text="'Editar'"></a></td>
+							<td><a class="btn btn-warning btn-sm"
+								th:href="@{/interpretacion/eliminar/}+ ${interpretacion.idInterpretacion}"
+								th:text="'Eliminar'" onclick="return confirm('Est�s seguro?');"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

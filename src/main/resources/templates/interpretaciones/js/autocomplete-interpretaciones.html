@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<script type="text/javascript" th:fragment="javascript">
+
+		$(document).ready(function() {
+			
+			$("#buscar_tema").autocomplete({
+
+				source : function(request, response) {
+					$.ajax({
+						url : "/interpretacion/cargarTemas/"+request.term,
+						dataType : "json",
+						data : {
+							term : request.term
+						},
+						success : function(data) {
+							response($.map(data, function(item) {
+								return {
+									value : item.nombreTema,
+									label : item.nombreTema
+								};
+							}));
+		},
+	});
+},
+				select : function(event, ui) {	
+					$("#id_tema").val(ui.item.label);
+					$("#buscar_tema").val(ui.item.value);
+
+				}
+
+			});
+			$("#buscar_estilo").autocomplete({
+
+				source : function(request, response) {
+					$.ajax({
+						url : "/interpretacion/cargarEstilos/"+request.term,
+						dataType : "json",
+						data : {
+							term : request.term
+						},
+						success : function(data) {
+							response($.map(data, function(item) {
+								return {
+									value : item.nombreEstilo,
+									label : item.nombreEstilo
+								};
+							}));
+		},
+	});
+},
+				select : function(event, ui) {	
+					$("#id_estilo").val(ui.item.value);
+					$("#buscar_estilo").val(ui.item.label);
+
+				}
+
+			});
+			$("#buscar_interprete").autocomplete({
+
+				source : function(request, response) {
+					$.ajax({
+						url : "/interpretacion/cargarInterpretes/"+request.term,
+						dataType : "json",
+						data : {
+							term : request.term
+						},
+						success : function(data) {
+							response($.map(data, function(item) {
+								return {
+									value : item.nombreInterprete,
+									label : item.nombreInterprete
+								};
+							}));
+		},
+	});
+},
+				select : function(event, ui) {	
+					$("#id_interprete").val(ui.item.value);
+					$("#buscar_interprete").val(ui.item.value);
+
+				}
+
+			});
+		});
+	</script>
+
+
+
+</body>
+</html>
+
+			

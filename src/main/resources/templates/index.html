@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+<body>
+<div class="container">
+<div class="jumbotron jumbotron-fluid">
+  
+    <h1 class="display-4 text-center">TIENDA DE MÚSICA</h1>
+    <div class="container">
+     <div class="row">
+  <img class="img-circle mx-auto d-block "  th:src="@{/images/viniloS.png}" alt="Tienda de música" />
+   
+    </div>
+    <p class="lead text-center"> EJEMPLO DE APLICACIÓN PARA DAW 1</p>
+  </div>
+</div>
+
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

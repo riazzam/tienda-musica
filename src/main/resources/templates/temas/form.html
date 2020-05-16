@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-secondary text-white">
+			<div class="card-header bg-warning text-dark" th:text="${titulo}"></div>
+			<div class="card-body ">
+
+				<div th:object="${tema}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+				<form th:action="@{/tema/form}" th:object="${tema}" method="post">
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">NOMBRE</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{nombreTema}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombreTema')}" th:errors="*{nombreTema}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">AUTOR</label>
+						<div class="col-sm-6">	
+						
+							<input type="text" th:field="*{autor}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('autor')}" th:errors="*{autor}"></small>	
+								
+						</div>
+					</div>
+							
+					
+					<div class="form-group">
+						<input type="submit" value="Crear Tema"
+							class="btn btn-dark" />
+					</div>
+					<input type="hidden" th:field="*{idTema}">
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</body>
+<footer th:replace="layout/layout :: footer"></footer>
+
+</html>
